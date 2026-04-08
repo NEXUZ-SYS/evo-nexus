@@ -7,6 +7,13 @@ from routes._helpers import WORKSPACE, safe_read
 bp = Blueprint("overview", __name__)
 
 REPORT_DIRS = [
+    "workspace/daily-logs",
+    "workspace/community/reports",
+    "workspace/social/reports",
+    "workspace/finance/reports",
+    "workspace/projects/reports",
+    "workspace/strategy/digests",
+    # Legacy paths (for existing installs)
     "01 Daily Logs",
     "03 Comunidade/reports",
     "04 Redes Sociais/reports",
@@ -73,10 +80,10 @@ def _build_overview_metrics(raw_metrics: dict, integration_count: int) -> list[d
     skills_count = len([d for d in (WORKSPACE / ".claude" / "skills").iterdir() if d.is_dir()]) if (WORKSPACE / ".claude" / "skills").is_dir() else 0
 
     return [
-        {"label": "Rotinas Executadas", "value": total_runs, "delta": f"{success_rate}% success", "deltaType": "up" if success_rate >= 90 else "neutral"},
-        {"label": "Custo Total", "value": f"${total_cost:.2f}", "delta": f"${total_cost / max(total_runs, 1):.2f}/run", "deltaType": "neutral"},
-        {"label": "Agentes", "value": agents_count, "delta": f"{skills_count} skills", "deltaType": "neutral"},
-        {"label": "Integrações Ativas", "value": integration_count},
+        {"label": "Routines Executed", "value": total_runs, "delta": f"{success_rate}% success", "deltaType": "up" if success_rate >= 90 else "neutral"},
+        {"label": "Total Cost", "value": f"${total_cost:.2f}", "delta": f"${total_cost / max(total_runs, 1):.2f}/run", "deltaType": "neutral"},
+        {"label": "Agents", "value": agents_count, "delta": f"{skills_count} skills", "deltaType": "neutral"},
+        {"label": "Active Integrations", "value": integration_count},
     ]
 
 

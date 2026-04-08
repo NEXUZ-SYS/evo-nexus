@@ -8,6 +8,13 @@ from routes._helpers import WORKSPACE, safe_read
 bp = Blueprint("reports", __name__)
 
 REPORT_DIRS = {
+    "workspace/daily-logs": "daily",
+    "workspace/community/reports": "community",
+    "workspace/social/reports": "social",
+    "workspace/finance/reports": "financial",
+    "workspace/projects/reports": "projects",
+    "workspace/strategy/digests": "strategy",
+    # Legacy paths (for existing installs)
     "01 Daily Logs": "daily",
     "03 Comunidade/reports": "community",
     "04 Redes Sociais/reports": "social",

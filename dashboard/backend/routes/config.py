@@ -1,4 +1,4 @@
-"""Config endpoint — CLAUDE.md, ROTINAS.md, ROADMAP.md, commands, Makefile."""
+"""Config endpoint — CLAUDE.md, ROUTINES.md, ROADMAP.md, commands, Makefile."""
 
 import re
 from flask import Blueprint, jsonify, Response, abort
@@ -15,12 +15,21 @@ def get_claude_md():
     return Response(content, mimetype="text/markdown")
 
 
-@bp.route("/api/config/rotinas")
-def get_rotinas():
-    content = safe_read(WORKSPACE / "ROTINAS.md")
+@bp.route("/api/config/routines")
+def get_routines_md():
+    # Try new name first, fallback to old
+    content = safe_read(WORKSPACE / "ROUTINES.md")
     if content is None:
-        abort(404, description="ROTINAS.md not found")
+        content = safe_read(WORKSPACE / "ROTINAS.md")
+    if content is None:
+        abort(404, description="ROUTINES.md not found")
     return Response(content, mimetype="text/markdown")
+
+
+# Legacy route alias
+@bp.route("/api/config/rotinas")
+def get_rotinas_legacy():
+    return get_routines_md()
 
 
 @bp.route("/api/config/roadmap")
@@ -60,7 +69,6 @@ def parse_makefile():
         m = re.match(r"^([a-zA-Z_][a-zA-Z0-9_-]*):", line)
         if m:
             name = m.group(1)
-            # Look for comment on same line or line above
             desc = ""
             if "##" in line:
                 desc = line.split("##", 1)[1].strip()

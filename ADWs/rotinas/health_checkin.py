@@ -1,31 +1,31 @@
 #!/usr/bin/env python3
-"""ADW: Health Check-in — Check-in semanal de saúde via Kai"""
+"""ADW: Health Check-in — Weekly health check-in via Kai"""
 
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from runner import run_claude, banner, summary
 
-PROMPT = """Execute o check-in semanal de saúde:
+PROMPT = """Run the weekly health check-in:
 
-1. Leia os dados mais recentes em '06 Pessoal/' (último check-in, evolução, baseline)
-2. Pergunte sobre:
-   - Peso atual (se tiver balança por perto)
-   - Como está a alimentação essa semana
-   - Frequência de treino (quantos dias treinou)
-   - Hidratação (estimativa de litros/dia)
-   - Qualidade do sono (1-10)
-   - Nível de energia/disposição geral (1-10)
-   - Medicação (se aplicável na semana)
-3. Compare com o último check-in e identifique tendências
-4. Gere um relatório curto com semáforo (verde/amarelo/vermelho) para cada item
-5. Salve o check-in em HTML: leia o template '.claude/templates/html/health-checkin.html', preencha todos os {{PLACEHOLDER}} com os dados coletados, e salve o HTML completo em '06 Pessoal/health-checkins/reports/[C] YYYY-MM-DD-health.html'. Criar o diretório se não existir.
-6. Salve também a versão markdown em '06 Pessoal/health-checkins/reports/YYYY-MM-DD.md'
-7. Atualize o arquivo de evolução se houver mudanças relevantes
+1. Read the most recent data in 'workspace/personal/' (last check-in, progress, baseline)
+2. Ask about:
+   - Current weight (if a scale is nearby)
+   - How nutrition has been this week
+   - Exercise frequency (how many days trained)
+   - Hydration (estimated liters/day)
+   - Sleep quality (1-10)
+   - General energy/mood level (1-10)
+   - Medication (if applicable this week)
+3. Compare with the last check-in and identify trends
+4. Generate a short report with traffic light (green/yellow/red) for each item
+5. Save the check-in as HTML: read the template '.claude/templates/html/health-checkin.html', fill all {{PLACEHOLDER}} with collected data, and save the complete HTML to 'workspace/personal/health-checkins/reports/[C] YYYY-MM-DD-health.html'. Create the directory if it doesn't exist.
+6. Also save the markdown version to 'workspace/personal/health-checkins/reports/YYYY-MM-DD.md'
+7. Update the progress file if there are relevant changes
 
-Ser direto e prático — foco na evolução e consistência dos hábitos."""
+Be direct and practical — focus on habit progress and consistency."""
 
 def main():
-    banner("🏥 Health Check-in", "Saúde • Hábitos • Evolução | @kai")
+    banner("🏥 Health Check-in", "Health • Habits • Progress | @kai")
     results = []
     results.append(run_claude(PROMPT, log_name="health-checkin", timeout=600, agent="kai-personal-assistant"))
     summary(results, "Health Check-in")
@@ -34,4 +34,4 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\n⚠ Cancelado.")
+        print("\n⚠ Cancelled.")

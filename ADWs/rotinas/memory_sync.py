@@ -1,29 +1,29 @@
 #!/usr/bin/env python3
-"""ADW: Memory Sync — Consolida memória via Clawdia"""
+"""ADW: Memory Sync — Consolidates memory via Clawdia"""
 
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from runner import run_claude, banner, summary
 
-PROMPT = """Execute a rotina de consolidação de memória:
+PROMPT = """Run the memory consolidation routine:
 
-1. Leia os últimos 3 daily logs em '01 Daily Logs/' (mais recentes primeiro)
-2. Leia os summaries de reuniões dos últimos 3 dias em '09 Reuniões/summaries/'
-3. Analise o git log recente: `git log --oneline --since="3 days ago"` e `git diff --stat HEAD~10` para entender o que mudou no workspace
-4. Para cada fonte, extraia:
-   - Decisões tomadas → salvar em memory/ como tipo 'project'
-   - Pessoas novas ou contexto novo sobre pessoas → salvar como tipo 'user' ou atualizar existente
-   - Feedbacks ou correções de abordagem → salvar como tipo 'feedback'
-   - Termos ou referências externas novas → salvar como tipo 'reference'
-   - Skills ou rotinas criadas/alteradas → atualizar referências se relevante
-5. Antes de salvar, verificar se já existe memória similar — atualizar em vez de duplicar
-6. Atualizar MEMORY.md com ponteiros para novos arquivos
+1. Read the last 3 daily logs in 'workspace/daily-logs/' (most recent first)
+2. Read the meeting summaries from the last 3 days in 'workspace/meetings/summaries/'
+3. Analyze recent git log: `git log --oneline --since="3 days ago"` and `git diff --stat HEAD~10` to understand what changed in the workspace
+4. For each source, extract:
+   - Decisions made → save in memory/ as type 'project'
+   - New people or new context about people → save as type 'user' or update existing
+   - Feedback or approach corrections → save as type 'feedback'
+   - New terms or external references → save as type 'reference'
+   - Skills or routines created/changed → update references if relevant
+5. Before saving, check if similar memory already exists — update instead of duplicating
+6. Update MEMORY.md with pointers to new files
 
-Reportar no final: quantas memórias criadas/atualizadas por tipo.
-Ser conciso — não criar memórias para coisas óbvias ou já documentadas no código."""
+Report at the end: how many memories created/updated by type.
+Be concise — don't create memories for obvious things or things already documented in code."""
 
 def main():
-    banner("🧠 Memory Sync", "Logs • Reuniões → Memória | @clawdia")
+    banner("🧠 Memory Sync", "Logs • Meetings → Memory | @clawdia")
     results = []
     results.append(run_claude(PROMPT, log_name="memory-sync", timeout=600, agent="clawdia-assistant"))
     summary(results, "Memory Sync")
@@ -32,4 +32,4 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\n⚠ Cancelado.")
+        print("\n⚠ Cancelled.")

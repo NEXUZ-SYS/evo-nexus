@@ -81,5 +81,5 @@ Just open Claude Code in this directory. It reads `CLAUDE.md` automatically and 
 
 - Read [Architecture](architecture.md) to understand how agents, skills, and routines work together
 - Browse `.claude/skills/CLAUDE.md` for the full skill index
-- Check `ROTINAS.md` for routine documentation
+- Check `ROUTINES.md` for routine documentation
 - Customize `config/routines.yaml` to adjust schedules
