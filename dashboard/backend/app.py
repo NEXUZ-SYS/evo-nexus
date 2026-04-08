@@ -191,4 +191,25 @@ if __name__ == "__main__":
                 port = int(cfg["port"])
     except Exception:
         pass
+    # Start scheduler in background thread
+    import threading
+    def _run_scheduler():
+        try:
+            import importlib.util
+            spec = importlib.util.spec_from_file_location("scheduler", WORKSPACE / "scheduler.py")
+            sched_module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(sched_module)
+            sched_module.setup_schedule()
+            import schedule as sched_lib
+            import time as _time
+            while True:
+                sched_lib.run_pending()
+                _time.sleep(30)
+        except Exception as e:
+            print(f"Scheduler failed to start: {e}")
+
+    sched_thread = threading.Thread(target=_run_scheduler, daemon=True, name="scheduler")
+    sched_thread.start()
+    print(f"  Scheduler started in background")
+
     app.run(host="0.0.0.0", port=port, debug=False)
