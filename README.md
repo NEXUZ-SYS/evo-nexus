@@ -173,4 +173,4 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
-Built with [Claude Code](https://claude.ai/claude-code) by Anthropic.
+Built with [Claude Code](https://code.claude.com/docs/pt/overview) by Anthropic.
