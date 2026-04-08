@@ -24,7 +24,7 @@ logger = logging.getLogger("licensing")
 LICENSING_SERVER = "https://license.evolutionfoundation.com.br"
 PRODUCT = "open-claude"
 VERSION = "0.1.0"
-TIER = "open-claude-community"
+TIER = "open-claude"
 HEARTBEAT_INTERVAL = 300  # 5 minutes (matching Ruby impl)
 TIMEOUT = 10
 
