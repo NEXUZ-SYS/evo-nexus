@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext'
 import {
   LayoutDashboard, FileText, Bot, Clock, Zap, Layout, Calendar,
   Brain, Plug, DollarSign, Settings, FolderOpen, MessageSquare,
-  Monitor, Users, ScrollText, LogOut, Menu, X, Shield, BookOpen,
+  Monitor, Users, ScrollText, LogOut, Menu, X, Shield, BookOpen, Library,
 } from 'lucide-react'
 
 const navItems = [
@@ -18,6 +18,7 @@ const navItems = [
   { to: '/templates', label: 'Templates', icon: Layout, resource: 'templates' },
   { to: '/scheduler', label: 'Services', icon: Calendar, resource: 'scheduler' },
   { to: '/memory', label: 'Memory', icon: Brain, resource: 'memory' },
+  { to: '/mempalace', label: 'Knowledge', icon: Library, resource: 'mempalace' },
   { to: '/integrations', label: 'Integrations', icon: Plug, resource: 'integrations' },
   { to: '/costs', label: 'Costs', icon: DollarSign, resource: 'costs' },
   { to: '/config', label: 'Config', icon: Settings, resource: 'config' },

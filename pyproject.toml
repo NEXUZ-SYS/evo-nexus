@@ -1,7 +1,7 @@
 [project]
 name = "open-claude"
 version = "0.1.0"
-description = "The open source operating system for AI-powered businesses"
+description = "Unofficial open source toolkit for Claude Code — AI-powered business operating system"
 requires-python = ">=3.10"
 dependencies = [
     "rich>=13.0",

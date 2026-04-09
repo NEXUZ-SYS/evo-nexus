@@ -23,6 +23,7 @@ import Users from './pages/Users'
 import Audit from './pages/Audit'
 import Roles from './pages/Roles'
 import Docs from './pages/Docs'
+import MemPalace from './pages/MemPalace'
 
 function AppContent() {
   const location = useLocation()
@@ -32,10 +33,10 @@ function AppContent() {
 
   // Docs are public — render without auth
   if (isDocs) {
-    // Redirect /docs/llms-full.txt to the API endpoint
-    if (location.pathname === '/docs/llms-full.txt') {
+    // Redirect .txt files to API directly
+    if (location.pathname.endsWith('.txt')) {
       const apiBase = import.meta.env.DEV ? 'http://localhost:8080' : ''
-      window.location.href = `${apiBase}/api/docs/llms-full.txt`
+      window.location.replace(`${apiBase}/api/docs/llms-full.txt`)
       return null
     }
     return (
@@ -89,6 +90,7 @@ function AppContent() {
           <Route path="/templates" element={<Templates />} />
           <Route path="/scheduler" element={<Scheduler />} />
           <Route path="/memory" element={<Memory />} />
+          <Route path="/mempalace" element={<MemPalace />} />
           <Route path="/files" element={<Files />} />
           <Route path="/systems" element={<Systems />} />
           {hasPermission('users', 'view') && <Route path="/users" element={<Users />} />}

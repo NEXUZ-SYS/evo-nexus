@@ -122,6 +122,7 @@ from routes.services import bp as services_bp
 from routes.auth_routes import bp as auth_bp
 from routes.systems import bp as systems_bp
 from routes.docs import bp as docs_bp
+from routes.mempalace import bp as mempalace_bp
 
 app.register_blueprint(overview_bp)
 app.register_blueprint(reports_bp)
@@ -139,6 +140,7 @@ app.register_blueprint(services_bp)
 app.register_blueprint(auth_bp)
 app.register_blueprint(systems_bp)
 app.register_blueprint(docs_bp)
+app.register_blueprint(mempalace_bp)
 
 # --------------- Terminal WebSocket ---------------
 from routes.terminal import bp as terminal_bp, init_websocket

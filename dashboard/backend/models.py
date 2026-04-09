@@ -87,6 +87,7 @@ ALL_RESOURCES = {
     "templates": ["view"],
     "routines": ["view", "execute"],
     "scheduler": ["view", "execute"],
+    "mempalace": ["view", "manage"],
 }
 
 # Default permissions for built-in roles (used when seeding)
@@ -112,6 +113,7 @@ BUILTIN_ROLES = {
             "templates": ["view"],
             "routines": ["view", "execute"],
             "scheduler": ["view", "execute"],
+            "mempalace": ["view"],
         },
     },
     "viewer": {
@@ -130,6 +132,7 @@ BUILTIN_ROLES = {
             "integrations": ["view"],
             "routines": ["view"],
             "scheduler": ["view"],
+            "mempalace": ["view"],
         },
     },
 }
@@ -203,10 +206,18 @@ class Role(db.Model):
 
 
 def seed_roles():
-    """Create built-in roles if they don't exist."""
+    """Create or update built-in roles to match current defaults."""
     for name, config in BUILTIN_ROLES.items():
         existing = Role.query.filter_by(name=name).first()
-        if not existing:
+        if existing:
+            # Merge new resources into existing permissions without removing custom ones
+            current = existing.permissions or {}
+            default = config["permissions"]
+            for resource, actions in default.items():
+                if resource not in current:
+                    current[resource] = actions
+            existing.permissions = current
+        else:
             role = Role(
                 name=name,
                 description=config["description"],

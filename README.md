@@ -19,9 +19,13 @@
 
 ---
 
+> **Disclaimer:** OpenClaude is an independent, **unofficial open-source project**. It is **not affiliated with, endorsed by, or sponsored by Anthropic**. "Claude" and "Claude Code" are trademarks of Anthropic, PBC. This project integrates with Claude Code as a third-party tool and requires users to provide their own installation and credentials.
+
+---
+
 ## What It Is
 
-OpenClaude is an open source alternative to [OpenClaw](https://github.com/openclaw) — purpose-built for the **Anthropic Claude Code** ecosystem. While OpenClaw targets OpenAI's infrastructure, OpenClaude is designed from the ground up to leverage Claude Code's unique capabilities: native agents, skills, slash commands, MCP integrations, and the Claude CLI.
+OpenClaude is an open source, **unofficial** toolkit compatible with [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and other LLM tooling. It is designed to integrate with Claude Code capabilities: native agents, skills, slash commands, MCP integrations, and the Claude CLI.
 
 It turns a single Claude Code installation into a team of 9 specialized agents — each with its own domain, skills, persistent memory, and automated routines. The result is a production system that runs daily operations for a founder/CEO: from morning briefings to financial reports, community monitoring, social analytics, and end-of-day consolidation.
 
@@ -317,7 +321,7 @@ MIT License. See [LICENSE](LICENSE) for details.
 ---
 
 <p align="center">
-  Built with <a href="https://code.claude.com/docs/overview">Claude Code</a> by Anthropic
+  An unofficial community toolkit for <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a>
   <br/>
-  <sub>An <a href="https://evolutionfoundation.com.br">Evolution Foundation</a> project</sub>
+  <sub>Built by <a href="https://evolutionfoundation.com.br">Evolution Foundation</a> — not affiliated with Anthropic</sub>
 </p>
