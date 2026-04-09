@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-04-08
+
+### Added
+- **Public Documentation** (`/docs`) — full docs site inside the dashboard, accessible without auth
+- **MemPalace** — semantic knowledge base with ChromaDB for code/doc search (optional)
+- **Content search** — docs search now matches inside file content, not just titles
+- **llms-full.txt** — pre-generated plain text with all docs for LLM consumption (`/docs/llms-full.txt`)
+- **23 routine examples** and **21 template examples** shipped with repo
+- **14 documentation screenshots** in `docs/imgs/`
+- **Comprehensive docs** — 28 markdown files across 9 sections (guides, dashboard, agents, skills, routines, integrations, real-world, reference)
+- **Practical usage guides** — how to run routines, invoke agents, create custom skills
+
+### Changed
+- **Unofficial disclaimer** — README, docs, and landing page clearly state "unofficial, not affiliated with Anthropic"
+- **Positioning** — "compatible with Claude Code and other LLM tooling" (not "purpose-built for")
+- **Enterprise-safe language** — "integrates with" instead of "leverages", opens door for multi-provider future
+- **Docs sidebar** — logical section ordering, section icons, content preview in search
+- **llms-full.txt** — served as static pre-generated file (instant load, no on-the-fly concatenation)
+- **i18n** — final cleanup, 18 files translated from Portuguese to English
+
+### Fixed
+- `/docs/llms-full.txt` redirect (was showing docs sidebar with "Loading..." instead of plain text)
+- Screenshots with personal data removed and replaced
+- 10 doc files corrected after full audit
+
 ## [0.2.0] - 2026-04-09
 
 ### Added
